@@ -4,20 +4,17 @@ function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isError, setIsError] = useState(false);
-  const [errorType, setErrorType] = useState(""); 
+  const [errorType, setErrorType] = useState(""); // only for fixing message
 
   const handleSubmit = async () => {
 
-    
+    // ✅ Input validation
     if (!input.trim()) {
       setResult("Please enter at least one dependency");
       setIsError(true);
       setErrorType("input");
       return;
     }
-
-    setResult("⏳ Processing...");
-    setIsError(false);
 
     const lines = input.trim().split("\n");
 
@@ -39,7 +36,7 @@ function App() {
     if (data.status === "error") {
       setResult(data.cycle.join(" → "));
       setIsError(true);
-      setErrorType("cycle"); 
+      setErrorType("cycle");
     } else {
       setResult(data.order.join(" → "));
       setIsError(false);
@@ -93,7 +90,6 @@ Backend Database`}
               fontSize: "16px"
             }}
           >
-            
             {isError && errorType === "cycle" && "❌ Cycle Detected: "}
             {isError && errorType === "input" && "⚠️ Error: "}
             {!isError && "✅ Valid Order: "}
