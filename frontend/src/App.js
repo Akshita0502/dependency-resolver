@@ -4,12 +4,14 @@ function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isError, setIsError] = useState(false);
+  const [errorType, setErrorType] = useState("");
 
 
   const handleSubmit = async () => {
     if (!input.trim()) {
       setResult("Please enter at least one dependency");
       setIsError(true);
+      setErrorType("input");
       return;
     }
     const lines = input.trim().split("\n");
@@ -32,9 +34,11 @@ function App() {
     if (data.status === "error") {
       setResult(data.cycle.join(" → "));
       setIsError(true);
+      setErrorType("cycle");
     } else {
       setResult(data.order.join(" → "));
       setIsError(false);
+      setErrorType("");
     }
   };
 
@@ -77,7 +81,9 @@ Backend Database`}
               fontSize: "16px"
             }}
           >
-            {isError ? "❌ Cycle Detected: " : "✅ Valid Order: "}
+            {isError && errorType === "cycle" && "❌ Cycle Detected: "}
+            {isError && errorType === "input" && "⚠️ Error: "}
+            {!isError && "✅ Valid Order: "}
             {result}
           </div>
         )}
@@ -116,13 +122,14 @@ const styles = {
   },
   button: {
     width: "100%",
-    padding: "10px",
-    borderRadius: "5px",
+    padding: "12px",
+    borderRadius: "8px",
     border: "none",
     background: "#4CAF50",
     color: "white",
     fontSize: "16px",
-    cursor: "pointer"
+    cursor: "pointer",
+    fontWeight: "bold"
   },
   result: {
     marginTop: "20px",
