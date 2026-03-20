@@ -4,18 +4,14 @@ function App() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isError, setIsError] = useState(false);
-  const [errorType, setErrorType] = useState(""); // only for fixing message
+
 
   const handleSubmit = async () => {
-
-    // ✅ Input validation
     if (!input.trim()) {
-      setResult("Please enter at least one dependency");
-      setIsError(true);
-      setErrorType("input");
-      return;
-    }
-
+    setResult("Please enter at least one dependency");
+    setIsError(true);
+    return;
+  }
     const lines = input.trim().split("\n");
 
     const edges = lines.map(line => {
@@ -36,11 +32,9 @@ function App() {
     if (data.status === "error") {
       setResult(data.cycle.join(" → "));
       setIsError(true);
-      setErrorType("cycle");
     } else {
       setResult(data.order.join(" → "));
       setIsError(false);
-      setErrorType("");
     }
   };
 
@@ -48,23 +42,17 @@ function App() {
     <div style={styles.container}>
       <div style={styles.card}>
         <h1 style={styles.title}>Dependency Resolver</h1>
-
         <p style={{ color: "#666", marginBottom: "15px" }}>
           Resolve task dependencies using graph algorithms
         </p>
-
         <textarea
           style={styles.textarea}
           placeholder={`Enter dependencies (Task Dependency):
 Frontend Backend
 Backend Database`}
           value={input}
-          onChange={(e) => {
-            setInput(e.target.value);
-            setResult(""); // clear old result
-          }}
+          onChange={(e) => setInput(e.target.value)}
         />
-
         <button
           style={{ marginBottom: "10px" }}
           onClick={() =>
@@ -77,7 +65,6 @@ Backend Database`}
         <button style={styles.button} onClick={handleSubmit}>
           Resolve
         </button>
-
         {result && (
           <div
             style={{
@@ -90,9 +77,7 @@ Backend Database`}
               fontSize: "16px"
             }}
           >
-            {isError && errorType === "cycle" && "❌ Cycle Detected: "}
-            {isError && errorType === "input" && "⚠️ Error: "}
-            {!isError && "✅ Valid Order: "}
+            {isError ? "❌ Cycle Detected: " : "✅ Valid Order: "}
             {result}
           </div>
         )}
