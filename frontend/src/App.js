@@ -7,6 +7,11 @@ function App() {
 
 
   const handleSubmit = async () => {
+    if (!input.trim()) {
+    setResult("Please enter at least one dependency");
+    setIsError(true);
+    return;
+  }
     const lines = input.trim().split("\n");
 
     const edges = lines.map(line => {
@@ -37,15 +42,25 @@ function App() {
     <div style={styles.container}>
       <div style={styles.card}>
         <h1 style={styles.title}>Dependency Resolver</h1>
-
+        <p style={{ color: "#666", marginBottom: "15px" }}>
+          Resolve task dependencies using graph algorithms
+        </p>
         <textarea
           style={styles.textarea}
-          placeholder={`Enter dependencies:
+          placeholder={`Enter dependencies (Task Dependency):
 Frontend Backend
 Backend Database`}
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
+        <button
+          style={{ marginBottom: "10px" }}
+          onClick={() =>
+            setInput("Frontend Backend\nBackend Database")
+          }
+        >
+          Try Example
+        </button>
 
         <button style={styles.button} onClick={handleSubmit}>
           Resolve
