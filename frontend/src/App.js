@@ -8,10 +8,10 @@ function App() {
 
   const handleSubmit = async () => {
     if (!input.trim()) {
-    setResult("Please enter at least one dependency");
-    setIsError(true);
-    return;
-  }
+      setResult("Please enter at least one dependency");
+      setIsError(true);
+      return;
+    }
     const lines = input.trim().split("\n");
 
     const edges = lines.map(line => {
