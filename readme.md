@@ -8,6 +8,8 @@ Finally, the main API layer acts as the controller. It receives requests, valida
 
 This separation makes the code modular, scalable, and easy to maintain.
 
+> This project is actively being improved with new features and enhancements.
+
 ## 🚀 Future Improvements
 
 - 🔄 Add loading indicator for better user experience
