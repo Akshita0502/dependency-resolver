@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-green)
+
+
 I built a Dependency Resolver API using FastAPI. The project is structured into three layers.
 
 First, the models layer uses Pydantic to validate incoming data. It ensures that the input follows the correct format, which is a list of dependency pairs.
