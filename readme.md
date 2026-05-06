@@ -10,6 +10,8 @@ This separation makes the code modular, scalable, and easy to maintain.
 
 > This project is actively being improved with new features and enhancements.
 
+
+
 ## 🚀 Future Improvements
 
 - 🔄 Add loading indicator for better user experience
@@ -20,6 +22,8 @@ This separation makes the code modular, scalable, and easy to maintain.
 - 🔍 Highlight cycle path visually in graph
 - 🌐 Add support for larger real-world dependency datasets
 - 🧠 Optimize performance for large inputs.
+
+- 
 
 ## 🌐 Live Demo
 
